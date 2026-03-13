@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мой Биохакинг OS — персональный ИИ-ассистент по здоровью</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Geologica:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080C10;
+    --bg2: #0D1117;
+    --surface: #111820;
+    --border: #1E2D3D;
+    --accent: #00E5FF;
+    --accent2: #00FF94;
+    --accent3: #FF6B35;
+    --text: #E8F4F8;
+    --muted: #5A7A8A;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Geologica', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* GRID OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .logo span {
+    color: var(--muted);
+  }
+
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--bg) !important;
+    padding: 8px 20px;
+    font-weight: 700;
+    font-size: 12px !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: #fff !important;
+    color: var(--bg) !important;
+  }
+
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,229,255,0.08) 0%, transparent 70%);
+    top: 50%;
+    right: -100px;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .hero-glow2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,255,148,0.05) 0%, transparent 70%);
+    bottom: -100px;
+    left: 20%;
+    pointer-events: none;
+  }
+
+  .hero-content {
+    max-width: 760px;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid rgba(0,229,255,0.3);
+    display: inline-block;
+    padding: 6px 14px;
+    margin-bottom: 32px;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+    position: relative;
+  }
+
+  .hero h1 .line2 {
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #8EAABB;
+    max-width: 520px;
+    margin-bottom: 48px;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 16px 36px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover::after { opacity: 1; }
+
+  .btn-secondary {
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    color: var(--text);
+    border-color: var(--muted);
+  }
+
+  .hero-trial {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent2);
+    margin-top: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .stat {
+    padding: 0 40px;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat:first-child { padding-left: 0; }
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* FEATURES */
+  .section {
+    padding: 100px 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section h2 {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 60px;
+    max-width: 600px;
+  }
+
+  .section h2 span { color: var(--muted); font-weight: 300; }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .feature {
+    background: var(--bg2);
+    padding: 40px 36px;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .feature:hover { background: var(--surface); }
+  .feature:hover::before { transform: scaleX(1); }
+
+  .feature-icon {
+    font-size: 28px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .feature h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .feature p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .feature-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 16px;
+    display: block;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .step {
+    padding: 48px 36px;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+
+  .step:last-child { border-right: none; }
+
+  .step-num {
+    font-family: var(--mono);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .step h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .step p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* INTEGRATIONS */
+  .integrations {
+    padding: 60px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .integrations-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .integrations-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .integration-item {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s;
+  }
+
+  .integration-item:hover { color: var(--text); }
+
+  .integration-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+  }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    max-width: 800px;
+  }
+
+  .price-card {
+    background: var(--bg2);
+    padding: 48px 44px;
+    position: relative;
+  }
+
+  .price-card.featured {
+    background: var(--surface);
+  }
+
+  .price-card.featured::before {
+    content: 'ПОПУЛЯРНЫЙ';
+    position: absolute;
+    top: -1px;
+    left: 44px;
+    font-family: var(--mono);
+    font-size: 10px;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 4px 12px;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+  }
+
+  .price-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .price-amount {
+    font-family: var(--mono);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-amount span {
+    font-size: 20px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .price-period {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+
+  .price-features {
+    list-style: none;
+    margin-bottom: 36px;
+  }
+
+  .price-features li {
+    font-size: 14px;
+    color: #8EAABB;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .price-features li::before {
+    content: '→';
+    font-family: var(--mono);
+    color: var(--accent2);
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .price-features li:last-child { border-bottom: none; }
+
+  .btn-price {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .btn-price:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .btn-price.primary {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+
+  .btn-price.primary:hover {
+    background: #fff;
+    border-color: #fff;
+    color: var(--bg);
+  }
+
+  .price-trial {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent2);
+    text-align: center;
+    margin-top: 14px;
+  }
+
+  /* CHAT PREVIEW */
+  .chat-preview {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    max-width: 420px;
+    position: relative;
+  }
+
+  .chat-header {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .chat-avatar {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  .chat-name {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .chat-status {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent2);
+    letter-spacing: 0.05em;
+  }
+
+  .chat-messages {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .msg {
+    max-width: 85%;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .msg.bot {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    color: var(--text);
+    align-self: flex-start;
+  }
+
+  .msg.user {
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
+    align-self: flex-end;
+    color: var(--text);
+  }
+
+  .msg-time {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--muted);
+    margin-top: 4px;
+    text-align: right;
+  }
+
+  /* SPLIT SECTION */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    padding: 120px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    width: 800px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(32px, 5vw, 60px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-section p {
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-section .btn-primary {
+    position: relative;
+    z-index: 1;
+    font-size: 14px;
+    padding: 18px 48px;
+  }
+
+  .cta-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer .logo { font-size: 12px; }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 24px 20px; }
+    .stat { padding: 16px 20px; border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:nth-child(odd) { border-right: 1px solid var(--border); }
+    .section { padding: 60px 20px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .step { border-right: none; border-bottom: 1px solid var(--border); }
+    .step:nth-child(odd) { border-right: 1px solid var(--border); }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
+    .split { grid-template-columns: 1fr; gap: 40px; }
+    .integrations { padding: 40px 20px; }
+    .integrations-list { gap: 24px; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .cta-section { padding: 80px 20px; }
+  }
+
+  /* SCANLINE EFFECT */
+  .scanline {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.03) 2px,
+      rgba(0,0,0,0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+</style>
+</head>
+<body>
+
+<div class="scanline"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">BIOOS<span>://</span>v1.0</div>
+  <div class="nav-links">
+    <a href="#features">Возможности</a>
+    <a href="#how">Как работает</a>
+    <a href="#pricing">Тарифы</a>
+    <a href="https://t.me/my_biohacking_bot" class="nav-cta">Попробовать</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Telegram · ИИ · Здоровье</div>
+    <h1>
+      Твой личный<br>
+      <em>биохакинг</em><br>
+      <span class="line2">операционная система</span>
+    </h1>
+    <p class="hero-sub">
+      ИИ-ассистент который анализирует твоё питание, сон и данные трекеров — и каждое утро присылает персональный план на день.
+    </p>
+    <div class="hero-actions">
+      <a href="https://t.me/my_biohacking_bot" class="btn-primary">Начать бесплатно →</a>
+      <a href="#features" class="btn-secondary">Что умеет бот</a>
+    </div>
+    <div class="hero-trial">✦ 7 дней бесплатно — карта не нужна</div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar reveal">
+  <div class="stat">
+    <div class="stat-num">7</div>
+    <div class="stat-label">дней бесплатного триала</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">990₽</div>
+    <div class="stat-label">в месяц — дешевле кофе в неделю</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">24/7</div>
+    <div class="stat-label">всегда на связи в Telegram</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">фото еды и PDF анализов</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-label">// возможности</div>
+  <h2>Всё что нужно для <span>осознанного здоровья</span></h2>
+  <div class="features-grid reveal">
+    <div class="feature">
+      <span class="feature-icon">🌅</span>
+      <h3>Утренний брифинг</h3>
+      <p>Каждое утро — персональный план на день с учётом твоего сна, восстановления и целей. Не общие советы, а конкретно под тебя.</p>
+      <span class="feature-tag">→ автоматически</span>
+    </div>
+    <div class="feature">
+      <span class="feature-icon">📸</span>
+      <h3>Дневник питания по фото</h3>
+      <p>Сфотографировал еду — получил КБЖУ, советы по составу и запись в дневник. Никаких ручных вводов и поиска по базам данных.</p>
+      <span class="feature-tag">→ 3 секунды</span>
+    </div>
+    <div class="feature">
+      <span class="feature-icon">🩸</span>
+      <h3>Расшифровка анализов</h3>
+      <p>Загрузи PDF из любой клиники — получи понятный разбор на русском с рекомендациями что делать дальше.</p>
+      <span class="feature-tag">→ любой формат</span>
+    </div>
+    <div class="feature">
+      <span class="feature-icon">💭</span>
+      <h3>Вечерняя рефлексия</h3>
+      <p>Три вопроса каждый вечер — ИИ читает между строк и задаёт один точный вопрос который сдвигает с места.</p>
+      <span class="feature-tag">→ глубже чем кажется</span>
+    </div>
+    <div class="feature">
+      <span class="feature-icon">🎤</span>
+      <h3>Голосовые сообщения</h3>
+      <p>Не хочешь печатать — говори. Бот распознаёт голос и отвечает так же, как на текст. Работает в любой ситуации.</p>
+      <span class="feature-tag">→ Whisper AI</span>
+    </div>
+    <div class="feature">
+      <span class="feature-icon">📊</span>
+      <h3>Интеграции с трекерами</h3>
+      <p>Подключи Whoop или Oura — бот видит твои данные по сну, HRV и восстановлению и учитывает их в каждом ответе.</p>
+      <span class="feature-tag">→ Whoop · Oura</span>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<div class="integrations reveal">
+  <div class="integrations-label">// работает вместе с</div>
+  <div class="integrations-list">
+    <div class="integration-item"><span class="integration-dot"></span>Whoop</div>
+    <div class="integration-item"><span class="integration-dot"></span>Oura Ring</div>
+    <div class="integration-item"><span class="integration-dot"></span>Todoist</div>
+    <div class="integration-item"><span class="integration-dot"></span>Claude Sonnet</div>
+    <div class="integration-item"><span class="integration-dot"></span>OpenAI Whisper</div>
+    <div class="integration-item"><span class="integration-dot"></span>Любые PDF-анализы</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section how" id="how">
+  <div class="section-label">// как работает</div>
+  <h2>Четыре шага <span>до первого брифинга</span></h2>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Запусти бота</h3>
+      <p>Найди @my_biohacking_bot в Telegram и нажми Start. Регистрация — одна кнопка.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Заполни профиль</h3>
+      <p>Расскажи о целях, здоровье и распорядке дня. Это займёт 3 минуты через удобный мини-апп.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Подключи трекер</h3>
+      <p>Необязательно, но мощно. Whoop или Oura дадут боту данные о твоём сне и восстановлении.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h3>Получи брифинг</h3>
+      <p>Завтра утром — первый персональный план на день. А дальше бот будет рядом 24/7.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAT PREVIEW + PRICING -->
+<section class="section" id="pricing">
+  <div class="split">
+    <div>
+      <div class="section-label">// в действии</div>
+      <h2 style="margin-bottom: 32px;">Живой <span>диалог</span></h2>
+      <div class="chat-preview reveal">
+        <div class="chat-header">
+          <div class="chat-avatar">⚡</div>
+          <div>
+            <div class="chat-name">Мой Биохакинг OS</div>
+            <div class="chat-status">● online</div>
+          </div>
+        </div>
+        <div class="chat-messages">
+          <div class="msg bot">
+            Доброе утро. Твой HRV сегодня 68 — выше среднего на 12%. Сон 7ч 20м, восстановление 84%. День хороший для силовой.
+            <div class="msg-time">07:00</div>
+          </div>
+          <div class="msg user">
+            Хочу разобраться с результатами анализа крови
+            <div class="msg-time">09:14</div>
+          </div>
+          <div class="msg bot">
+            Скинь PDF — разберём вместе. Смотрю на всё: ферритин, витамин D, гормоны щитовидки, маркеры воспаления.
+            <div class="msg-time">09:14</div>
+          </div>
+          <div class="msg user">
+            [фото обеда]
+            <div class="msg-time">13:22</div>
+          </div>
+          <div class="msg bot">
+            Гречка с курицей и салатом — примерно 520 ккал, Б38 Ж12 У55. Добавить в дневник?
+            <div class="msg-time">13:22</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label">// тарифы</div>
+      <h2 style="margin-bottom: 32px;">Просто <span>и без лишнего</span></h2>
+      <div class="pricing-grid reveal">
+        <div class="price-card">
+          <div class="price-name">Месячный</div>
+          <div class="price-amount">990<span>₽</span></div>
+          <div class="price-period">в месяц · отмена в любой момент</div>
+          <ul class="price-features">
+            <li>Все функции без ограничений</li>
+            <li>Неограниченно фото еды</li>
+            <li>PDF анализов</li>
+            <li>Голосовые сообщения</li>
+            <li>Интеграция с трекерами</li>
+          </ul>
+          <a href="https://t.me/my_biohacking_bot" class="btn-price">Начать →</a>
+          <div class="price-trial">7 дней бесплатно</div>
+        </div>
+        <div class="price-card featured">
+          <div class="price-name">Годовой</div>
+          <div class="price-amount">666<span>₽/мес</span></div>
+          <div class="price-period">7 990₽ в год · экономия 33%</div>
+          <ul class="price-features">
+            <li>Всё из месячного</li>
+            <li>Приоритетная поддержка</li>
+            <li>Ранний доступ к новым функциям</li>
+            <li>Фиксированная цена навсегда</li>
+            <li>Экономия 1 990₽ в год</li>
+          </ul>
+          <a href="https://t.me/my_biohacking_bot" class="btn-price primary">Выгоднее →</a>
+          <div class="price-trial">7 дней бесплатно</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Попробуй 7 дней<br><span style="color: var(--accent)">бесплатно</span></h2>
+  <p>Карта не нужна. Просто открой бот и нажми Start.</p>
+  <a href="https://t.me/my_biohacking_bot" class="btn-primary">Открыть в Telegram →</a>
+  <div class="cta-note">@my_biohacking_bot · работает прямо сейчас</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">BIOOS<span>://</span>v1.0</div>
+  <div class="footer-links">
+    <a href="https://t.me/my_biohacking_bot">Telegram бот</a>
+    <a href="https://t.me/biohackingos_support">Поддержка</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 40) {
+      nav.style.borderBottomColor = 'rgba(30,45,61,0.8)';
+    } else {
+      nav.style.borderBottomColor = 'var(--border)';
+    }
+  });
+</script>
+</body>
+</html>
