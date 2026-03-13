@@ -9,15 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Geologica:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #080C10;
-    --bg2: #0D1117;
-    --surface: #111820;
-    --border: #1E2D3D;
-    --accent: #00E5FF;
-    --accent2: #00FF94;
-    --accent3: #FF6B35;
-    --text: #E8F4F8;
-    --muted: #5A7A8A;
+    --bg: #080F0B;
+    --bg2: #0B1A10;
+    --surface: #0D2B1F;
+    --border: #1A3D28;
+    --accent: #00FF7F;
+    --accent2: #FFD600;
+    --accent3: #00CC66;
+    --text: #E8F5EE;
+    --muted: #4D7A5E;
     --mono: 'Space Mono', monospace;
     --sans: 'Geologica', sans-serif;
   }
@@ -53,13 +53,14 @@
     top: 0;
     width: 100%;
     z-index: 100;
-    padding: 20px 40px;
+    padding: 20px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: rgba(8,12,16,0.85);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
+    box-sizing: border-box;
   }
 
   .logo {
@@ -107,7 +108,8 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 120px 40px 80px;
+    justify-content: center;
+    padding: 120px 60px 80px;
     position: relative;
     overflow: hidden;
   }
@@ -137,9 +139,11 @@
 
   .hero-content {
     max-width: 760px;
+    width: 100%;
     position: relative;
     z-index: 1;
     animation: fadeUp 0.8s ease both;
+    margin: 0 auto;
   }
 
   @keyframes fadeUp {
@@ -250,7 +254,7 @@
   .stats-bar {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 32px 40px;
+    padding: 32px 60px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
@@ -284,7 +288,9 @@
 
   /* FEATURES */
   .section {
-    padding: 100px 40px;
+    padding: 100px 60px;
+    max-width: 1280px;
+    margin: 0 auto;
     position: relative;
     z-index: 1;
   }
@@ -340,7 +346,7 @@
   .feature:hover { background: var(--surface); }
   .feature:hover::before { transform: scaleX(1); }
 
-  .feature-icon {
+    .feature-icon {
     font-size: 28px;
     margin-bottom: 20px;
     display: block;
@@ -413,8 +419,11 @@
 
   /* INTEGRATIONS */
   .integrations {
-    padding: 60px 40px;
+    padding: 60px 60px;
     border-bottom: 1px solid var(--border);
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .integrations-label {
@@ -670,7 +679,7 @@
   /* CTA */
   .cta-section {
     text-align: center;
-    padding: 120px 40px;
+    padding: 120px 60px;
     position: relative;
     overflow: hidden;
   }
@@ -724,7 +733,10 @@
   /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
-    padding: 40px;
+    padding: 40px 60px;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -795,6 +807,94 @@
     pointer-events: none;
     z-index: 9999;
   }
+
+  /* PIP-BOY ENHANCEMENTS */
+  .pip-badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    border: 1px solid var(--accent);
+    padding: 3px 10px;
+    display: inline-block;
+    position: relative;
+    opacity: 0.7;
+  }
+
+  .pip-badge::before {
+    content: '▶';
+    margin-right: 6px;
+    animation: blink 1.2s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .feature:hover .feature-icon svg {
+    filter: drop-shadow(0 0 8px var(--accent));
+    transition: filter 0.3s;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: 1px solid rgba(0,255,127,0.3);
+    display: inline-block;
+    padding: 6px 14px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-tag::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,255,127,0.15), transparent);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    100% { left: 200%; }
+  }
+
+  /* Stat numbers — Pip-Boy счётчик анимация */
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+    text-shadow: 0 0 20px rgba(0,255,127,0.4);
+  }
+
+  /* Step numbers */
+  .step-num {
+    font-family: var(--mono);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 20px;
+    text-shadow: none;
+  }
+
+
+  
+
+  .feature-icon {
+    margin-bottom: 12px;
+    display: block;
+    min-height: 88px;
+  }
+
 </style>
 </head>
 <body>
@@ -808,6 +908,7 @@
     <a href="#features">Возможности</a>
     <a href="#how">Как работает</a>
     <a href="#pricing">Тарифы</a>
+    <a href="https://t.me/biohacking_os">Канал</a>
     <a href="https://t.me/my_biohacking_bot" class="nav-cta">Попробовать</a>
   </div>
 </nav>
@@ -815,13 +916,14 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-glow"></div>
+  
   <div class="hero-glow2"></div>
   <div class="hero-content">
-    <div class="hero-tag">Telegram · ИИ · Здоровье</div>
+    <div class="hero-tag">⬡ VAULT-TECH CERTIFIED · BIOOS v1.0 · SERIES 2026</div>
     <h1>
       Твой личный<br>
-      <em>биохакинг</em><br>
-      <span class="line2">операционная система</span>
+      <em>ИИ-ассистент</em><br>
+      <span class="line2">по биохакингу</span>
     </h1>
     <p class="hero-sub">
       ИИ-ассистент который анализирует твоё питание, сон и данные трекеров — и каждое утро присылает персональный план на день.
@@ -914,7 +1016,8 @@
 <!-- HOW IT WORKS -->
 <section class="section how" id="how">
   <div class="section-label">// как работает</div>
-  <h2>Четыре шага <span>до первого брифинга</span></h2>
+  <div class="pip-badge">ИНСТРУКЦИЯ ПО АКТИВАЦИИ</div>
+  <h2 style="margin-top:16px">Четыре шага <span>до первого брифинга</span></h2>
   <div class="steps reveal">
     <div class="step">
       <div class="step-num">01</div>
@@ -1027,6 +1130,7 @@
   <div class="logo">BIOOS<span>://</span>v1.0</div>
   <div class="footer-links">
     <a href="https://t.me/my_biohacking_bot">Telegram бот</a>
+    <a href="https://t.me/biohacking_os">Канал</a>
     <a href="https://t.me/biohackingos_support">Поддержка</a>
   </div>
 </footer>
