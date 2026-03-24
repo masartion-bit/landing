@@ -3,1160 +3,265 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Мой Биохакинг OS — персональный ИИ-ассистент по здоровью</title>
+<title>90 дней трансформации — тело и мышление</title>
+<meta name="description" content="Групповая программа трансформации через физические практики, нейробиологию и ИИ-ассистента. 15 мест.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Geologica:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #080F0B;
-    --bg2: #0B1A10;
-    --surface: #0D2B1F;
-    --border: #1A3D28;
-    --accent: #00FF7F;
-    --accent2: #FFD600;
-    --accent3: #00CC66;
-    --text: #E8F5EE;
-    --muted: #4D7A5E;
-    --mono: 'Space Mono', monospace;
-    --sans: 'Geologica', sans-serif;
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#08080d;--bg2:#10101a;--bg3:#181825;
+    --text:#e2e2ea;--dim:#7a7a95;--white:#fff;
+    --accent:#e94560;--accent2:#ff6b81;--accent-glow:rgba(233,69,96,0.12);
+    --science:#4fc3f7;--science-dim:rgba(79,195,247,0.1);
   }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-weight: 300;
-    overflow-x: hidden;
-  }
-
-  /* GRID OVERLAY */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-    padding: 20px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(8,12,16,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    box-sizing: border-box;
-  }
-
-  .logo {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .logo span {
-    color: var(--muted);
-  }
-
-  nav a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 13px;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-
-  nav a:hover { color: var(--accent); }
-
-  .nav-cta {
-    background: var(--accent);
-    color: var(--bg) !important;
-    padding: 8px 20px;
-    font-weight: 700;
-    font-size: 12px !important;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: all 0.2s !important;
-  }
-
-  .nav-cta:hover {
-    background: #fff !important;
-    color: var(--bg) !important;
-  }
-
-  .nav-links { display: flex; gap: 32px; align-items: center; }
+  html{scroll-behavior:smooth}
+  body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1}
+  .page{position:relative;z-index:2}
 
   /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 120px 60px 80px;
-    position: relative;
-    overflow: hidden;
-  }
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 24px 40px;text-align:center;position:relative;overflow:hidden}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+  .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,13,.5) 0%,rgba(8,8,13,.4) 20%,rgba(8,8,13,.55) 50%,rgba(8,8,13,.92) 82%,rgba(8,8,13,1) 100%);z-index:-1}
+  .hero-content{position:relative;z-index:1;max-width:560px}
 
-  .hero-glow {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,229,255,0.08) 0%, transparent 70%);
-    top: 50%;
-    right: -100px;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
+  .badge{display:inline-block;padding:6px 16px;border:1px solid rgba(233,69,96,.4);border-radius:100px;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:28px;backdrop-filter:blur(4px);background:rgba(233,69,96,.06);animation:fadeUp .8s ease}
+  .hero-title{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(40px,10vw,68px);line-height:1.02;text-transform:uppercase;letter-spacing:-1px;color:var(--white);margin-bottom:20px;text-shadow:0 4px 30px rgba(0,0,0,.5);animation:fadeUp .8s ease .1s both}
+  .hero-title span{display:block;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 2px 10px rgba(233,69,96,.3))}
+  .hero-sub{font-size:17px;font-weight:300;line-height:1.65;color:rgba(226,226,234,.8);margin-bottom:36px;text-shadow:0 2px 8px rgba(0,0,0,.4);animation:fadeUp .8s ease .2s both}
+  .hero-sub strong{color:var(--white);font-weight:500}
 
-  .hero-glow2 {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,255,148,0.05) 0%, transparent 70%);
-    bottom: -100px;
-    left: 20%;
-    pointer-events: none;
-  }
+  .spots{display:flex;align-items:center;gap:10px;margin-bottom:28px;animation:fadeUp .8s ease .3s both}
+  .spots-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 12px rgba(233,69,96,.6);animation:pulse 2s ease infinite}
+  .spots-text{font-family:'Oswald',sans-serif;font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--accent2)}
 
-  .hero-content {
-    max-width: 760px;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    animation: fadeUp 0.8s ease both;
-    margin: 0 auto;
-  }
+  .cta-btn{display:inline-flex;align-items:center;gap:10px;padding:18px 44px;background:var(--accent);color:var(--white);text-decoration:none;font-family:'Oswald',sans-serif;font-size:17px;font-weight:600;letter-spacing:1px;text-transform:uppercase;border-radius:4px;transition:all .3s ease;animation:fadeUp .8s ease .4s both;position:relative;overflow:hidden}
+  .cta-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transition:left .5s ease}
+  .cta-btn:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(233,69,96,.35)}
+  .cta-btn:hover::before{left:100%}
+  .cta-btn svg{width:20px;height:20px;fill:currentColor}
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  .scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:rgba(255,255,255,.3);font-size:11px;letter-spacing:2px;text-transform:uppercase;animation:fadeUp .8s ease .6s both}
+  .scroll-hint .arrow{width:18px;height:18px;border-right:1.5px solid rgba(255,255,255,.3);border-bottom:1.5px solid rgba(255,255,255,.3);transform:rotate(45deg);animation:scrollBounce 2s ease infinite}
 
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: 1px solid rgba(0,229,255,0.3);
-    display: inline-block;
-    padding: 6px 14px;
-    margin-bottom: 32px;
-  }
+  /* SECTIONS */
+  .s{padding:72px 24px;max-width:620px;margin:0 auto}
+  .s-label{font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+  .s-title{font-family:'Oswald',sans-serif;font-size:clamp(26px,5.5vw,38px);font-weight:600;text-transform:uppercase;color:var(--white);line-height:1.15;margin-bottom:20px}
+  .s p{font-size:15.5px;line-height:1.7;color:var(--dim);margin-bottom:14px}
+  .s p strong{color:var(--text);font-weight:500}
 
-  .hero h1 {
-    font-size: clamp(42px, 6vw, 80px);
-    font-weight: 900;
-    line-height: 1.0;
-    letter-spacing: -0.02em;
-    margin-bottom: 28px;
-  }
-
-  .hero h1 em {
-    font-style: normal;
-    color: var(--accent);
-    position: relative;
-  }
-
-  .hero h1 .line2 {
-    color: var(--muted);
-    font-weight: 300;
-  }
-
-  .hero-sub {
-    font-size: 18px;
-    line-height: 1.7;
-    color: #8EAABB;
-    max-width: 520px;
-    margin-bottom: 48px;
-    font-weight: 300;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: var(--bg);
-    padding: 16px 36px;
-    font-family: var(--mono);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-primary::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0.15);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .btn-primary:hover::after { opacity: 1; }
-
-  .btn-secondary {
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 12px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 2px;
-    transition: color 0.2s, border-color 0.2s;
-  }
-
-  .btn-secondary:hover {
-    color: var(--text);
-    border-color: var(--muted);
-  }
-
-  .hero-trial {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent2);
-    margin-top: 20px;
-    letter-spacing: 0.05em;
-  }
-
-  /* STATS BAR */
-  .stats-bar {
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 32px 60px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    position: relative;
-    z-index: 1;
-    animation: fadeUp 0.8s 0.2s ease both;
-  }
-
-  .stat {
-    padding: 0 40px;
-    border-right: 1px solid var(--border);
-  }
-
-  .stat:first-child { padding-left: 0; }
-  .stat:last-child { border-right: none; }
-
-  .stat-num {
-    font-family: var(--mono);
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .stat-label {
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-  }
+  /* SCIENCE HIGHLIGHT */
+  .sci-block{background:var(--science-dim);border-left:3px solid var(--science);border-radius:0 8px 8px 0;padding:20px 24px;margin:24px 0}
+  .sci-block p{color:rgba(79,195,247,.85);margin:0;font-size:14.5px;line-height:1.65}
+  .sci-block strong{color:var(--science)}
 
   /* FEATURES */
-  .section {
-    padding: 100px 60px;
-    max-width: 1280px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
+  .features{display:grid;gap:14px;margin-top:32px}
+  .feat{background:var(--bg2);border:1px solid rgba(255,255,255,.04);border-radius:8px;padding:22px;transition:border-color .3s}
+  .feat:hover{border-color:rgba(233,69,96,.15)}
+  .feat-icon{font-size:22px;margin-bottom:10px}
+  .feat-title{font-family:'Oswald',sans-serif;font-size:15px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--white);margin-bottom:6px}
+  .feat-desc{font-size:13.5px;line-height:1.6;color:var(--dim)}
+
+  /* LEVELS */
+  .levels{display:grid;gap:14px;margin-top:28px}
+  .level{background:var(--bg2);border-radius:8px;padding:22px;position:relative;border:1px solid rgba(255,255,255,.04)}
+  .level-num{font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:rgba(233,69,96,.15);position:absolute;top:14px;right:20px;line-height:1}
+  .level-title{font-family:'Oswald',sans-serif;font-size:16px;font-weight:600;text-transform:uppercase;color:var(--white);margin-bottom:6px}
+  .level-desc{font-size:13.5px;line-height:1.6;color:var(--dim)}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:36px 0;background:rgba(255,255,255,.04);border-radius:8px;overflow:hidden}
+  .stat{background:var(--bg2);padding:22px 14px;text-align:center}
+  .stat-num{font-family:'Oswald',sans-serif;font-size:30px;font-weight:700;color:var(--white);line-height:1}
+  .stat-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);margin-top:6px}
+
+  /* CTA BOTTOM */
+  .cta-sec{padding:72px 24px 100px;text-align:center;position:relative}
+  .cta-sec::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:500px;height:400px;background:radial-gradient(circle,var(--accent-glow),transparent 70%);pointer-events:none}
+  .cta-sec .s-title{max-width:480px;margin:0 auto 14px}
+  .cta-sec p{font-size:15.5px;color:var(--dim);margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto}
+  .cta-sec .spots{justify-content:center;margin-bottom:22px}
+
+  .divider{width:36px;height:2px;background:var(--accent);margin:0 auto;opacity:.4}
+
+  .footer{padding:20px;text-align:center;font-size:11px;color:rgba(255,255,255,.15);border-top:1px solid rgba(255,255,255,.04)}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  @keyframes scrollBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(6px)}}
+
+  @media(max-width:480px){
+    .hero{padding:36px 20px 28px}
+    .s{padding:56px 20px}
+    .cta-btn{padding:16px 32px;font-size:15px;width:100%;justify-content:center}
+    .stat{padding:18px 8px}.stat-num{font-size:24px}
   }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-
-  .section h2 {
-    font-size: clamp(28px, 4vw, 48px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 60px;
-    max-width: 600px;
-  }
-
-  .section h2 span { color: var(--muted); font-weight: 300; }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-
-  .feature {
-    background: var(--bg2);
-    padding: 40px 36px;
-    transition: background 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .feature::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
-
-  .feature:hover { background: var(--surface); }
-  .feature:hover::before { transform: scaleX(1); }
-
-    .feature-icon {
-    font-size: 28px;
-    margin-bottom: 20px;
-    display: block;
-  }
-
-  .feature h3 {
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    letter-spacing: -0.01em;
-  }
-
-  .feature p {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .feature-tag {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--accent2);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-top: 16px;
-    display: block;
-  }
-
-  /* HOW IT WORKS */
-  .how {
-    background: var(--bg2);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-  }
-
-  .step {
-    padding: 48px 36px;
-    border-right: 1px solid var(--border);
-    position: relative;
-  }
-
-  .step:last-child { border-right: none; }
-
-  .step-num {
-    font-family: var(--mono);
-    font-size: 48px;
-    font-weight: 700;
-    color: var(--border);
-    line-height: 1;
-    margin-bottom: 20px;
-  }
-
-  .step h3 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .step p {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  /* INTEGRATIONS */
-  .integrations {
-    padding: 60px 60px;
-    border-bottom: 1px solid var(--border);
-    max-width: 1280px;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
-
-  .integrations-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 32px;
-  }
-
-  .integrations-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 48px;
-    flex-wrap: wrap;
-  }
-
-  .integration-item {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.2s;
-  }
-
-  .integration-item:hover { color: var(--text); }
-
-  .integration-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent2);
-  }
-
-  /* PRICING */
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    max-width: 800px;
-  }
-
-  .price-card {
-    background: var(--bg2);
-    padding: 48px 44px;
-    position: relative;
-  }
-
-  .price-card.featured {
-    background: var(--surface);
-  }
-
-  .price-card.featured::before {
-    content: 'ПОПУЛЯРНЫЙ';
-    position: absolute;
-    top: -1px;
-    left: 44px;
-    font-family: var(--mono);
-    font-size: 10px;
-    background: var(--accent);
-    color: var(--bg);
-    padding: 4px 12px;
-    letter-spacing: 0.1em;
-    font-weight: 700;
-  }
-
-  .price-name {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-  }
-
-  .price-amount {
-    font-family: var(--mono);
-    font-size: 48px;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .price-amount span {
-    font-size: 20px;
-    color: var(--muted);
-    font-weight: 400;
-  }
-
-  .price-period {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 32px;
-  }
-
-  .price-features {
-    list-style: none;
-    margin-bottom: 36px;
-  }
-
-  .price-features li {
-    font-size: 14px;
-    color: #8EAABB;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .price-features li::before {
-    content: '→';
-    font-family: var(--mono);
-    color: var(--accent2);
-    font-size: 12px;
-    flex-shrink: 0;
-  }
-
-  .price-features li:last-child { border-bottom: none; }
-
-  .btn-price {
-    display: block;
-    text-align: center;
-    padding: 14px;
-    font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: 1px solid var(--border);
-    color: var(--muted);
-  }
-
-  .btn-price:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  .btn-price.primary {
-    background: var(--accent);
-    color: var(--bg);
-    border-color: var(--accent);
-  }
-
-  .btn-price.primary:hover {
-    background: #fff;
-    border-color: #fff;
-    color: var(--bg);
-  }
-
-  .price-trial {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent2);
-    text-align: center;
-    margin-top: 14px;
-  }
-
-  /* CHAT PREVIEW */
-  .chat-preview {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    max-width: 420px;
-    position: relative;
-  }
-
-  .chat-header {
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .chat-avatar {
-    width: 32px;
-    height: 32px;
-    background: var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-  }
-
-  .chat-name {
-    font-size: 13px;
-    font-weight: 700;
-  }
-
-  .chat-status {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--accent2);
-    letter-spacing: 0.05em;
-  }
-
-  .chat-messages {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .msg {
-    max-width: 85%;
-    padding: 12px 16px;
-    font-size: 13px;
-    line-height: 1.6;
-  }
-
-  .msg.bot {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-left: 2px solid var(--accent);
-    color: var(--text);
-    align-self: flex-start;
-  }
-
-  .msg.user {
-    background: rgba(0,229,255,0.08);
-    border: 1px solid rgba(0,229,255,0.2);
-    align-self: flex-end;
-    color: var(--text);
-  }
-
-  .msg-time {
-    font-family: var(--mono);
-    font-size: 9px;
-    color: var(--muted);
-    margin-top: 4px;
-    text-align: right;
-  }
-
-  /* SPLIT SECTION */
-  .split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-
-  /* CTA */
-  .cta-section {
-    text-align: center;
-    padding: 120px 60px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    width: 800px;
-    height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
-
-  .cta-section h2 {
-    font-size: clamp(32px, 5vw, 60px);
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .cta-section p {
-    font-size: 17px;
-    color: var(--muted);
-    margin-bottom: 40px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .cta-section .btn-primary {
-    position: relative;
-    z-index: 1;
-    font-size: 14px;
-    padding: 18px 48px;
-  }
-
-  .cta-note {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 16px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 60px;
-    max-width: 1280px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  footer .logo { font-size: 12px; }
-
-  .footer-links {
-    display: flex;
-    gap: 24px;
-  }
-
-  .footer-links a {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--text); }
-
-  /* SCROLL ANIMATIONS */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* MOBILE */
-  @media (max-width: 768px) {
-    nav { padding: 16px 20px; }
-    .nav-links { display: none; }
-    .hero { padding: 100px 20px 60px; }
-    .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 24px 20px; }
-    .stat { padding: 16px 20px; border-right: none; border-bottom: 1px solid var(--border); }
-    .stat:nth-child(odd) { border-right: 1px solid var(--border); }
-    .section { padding: 60px 20px; }
-    .features-grid { grid-template-columns: 1fr; }
-    .steps { grid-template-columns: repeat(2, 1fr); }
-    .step { border-right: none; border-bottom: 1px solid var(--border); }
-    .step:nth-child(odd) { border-right: 1px solid var(--border); }
-    .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
-    .split { grid-template-columns: 1fr; gap: 40px; }
-    .integrations { padding: 40px 20px; }
-    .integrations-list { gap: 24px; }
-    footer { flex-direction: column; gap: 20px; text-align: center; }
-    .cta-section { padding: 80px 20px; }
-  }
-
-  /* SCANLINE EFFECT */
-  .scanline {
-    position: fixed;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,0,0,0.03) 2px,
-      rgba(0,0,0,0.03) 4px
-    );
-    pointer-events: none;
-    z-index: 9999;
-  }
-
-  /* PIP-BOY ENHANCEMENTS */
-  .pip-badge {
-    font-family: var(--mono);
-    font-size: 9px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    border: 1px solid var(--accent);
-    padding: 3px 10px;
-    display: inline-block;
-    position: relative;
-    opacity: 0.7;
-  }
-
-  .pip-badge::before {
-    content: '▶';
-    margin-right: 6px;
-    animation: blink 1.2s step-end infinite;
-  }
-
-  @keyframes blink {
-    50% { opacity: 0; }
-  }
-
-  .feature:hover .feature-icon svg {
-    filter: drop-shadow(0 0 8px var(--accent));
-    transition: filter 0.3s;
-  }
-
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    border: 1px solid rgba(0,255,127,0.3);
-    display: inline-block;
-    padding: 6px 14px;
-    margin-bottom: 32px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-tag::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0,255,127,0.15), transparent);
-    animation: shimmer 3s infinite;
-  }
-
-  @keyframes shimmer {
-    100% { left: 200%; }
-  }
-
-  /* Stat numbers — Pip-Boy счётчик анимация */
-  .stat-num {
-    font-family: var(--mono);
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 6px;
-    text-shadow: 0 0 20px rgba(0,255,127,0.4);
-  }
-
-  /* Step numbers */
-  .step-num {
-    font-family: var(--mono);
-    font-size: 48px;
-    font-weight: 700;
-    color: var(--border);
-    line-height: 1;
-    margin-bottom: 20px;
-    text-shadow: none;
-  }
-
-
-  
-
-  .feature-icon {
-    margin-bottom: 12px;
-    display: block;
-    min-height: 88px;
-  }
-
 </style>
 </head>
 <body>
+<div class="page">
 
-<div class="scanline"></div>
+  <section class="hero">
+    <video class="hero-video" autoplay loop muted playsinline>
+      <source src="hero-bg.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="badge">Набор в бета-группу</div>
+      <h1 class="hero-title">Тело меняет<br><span>мышление</span></h1>
+      <p class="hero-sub">Не мотивационные тренинги. Не очередной фитнес-курс. <strong>Научный подход к трансформации через гормоны, нейромедиаторы и физические практики</strong> под контролем ИИ-ассистента.</p>
+      <div class="spots">
+        <div class="spots-dot"></div>
+        <div class="spots-text">15 мест — первый поток</div>
+      </div>
+      <a href="https://t.me/amontaaana?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%83%20%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8." class="cta-btn" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295l.213-3.053 5.56-5.023c.24-.213-.054-.334-.373-.121L8.32 13.617l-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/></svg>
+        Узнать условия
+      </a>
+    </div>
+    <div class="scroll-hint"><span>Подробнее</span><div class="arrow"></div></div>
+  </section>
 
-<!-- NAV -->
-<nav>
-  <div class="logo">BIOOS<span>://</span>v1.0</div>
-  <div class="nav-links">
-    <a href="#features">Возможности</a>
-    <a href="#how">Как работает</a>
-    <a href="#pricing">Тарифы</a>
-    <a href="https://t.me/biohacking_os">Канал</a>
-    <a href="https://t.me/my_biohacking_bot" class="nav-cta">Попробовать</a>
-  </div>
-</nav>
+  <!-- PROBLEM -->
+  <section class="s">
+    <div class="s-label">Проблема</div>
+    <h2 class="s-title">Почему ты не можешь изменить жизнь</h2>
+    <p>Тебе говорят: нужна мотивация, дисциплина, психолог, коуч. Ты покупаешь книги, проходишь курсы, ставишь цели на новый год. Через две недели всё откатывается.</p>
+    <p>Проблема не в тебе. Проблема в том что <strong>твоим поведением управляют гормоны и нейромедиаторы</strong>, а не мысли и намерения.</p>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-glow"></div>
-  
-  <div class="hero-glow2"></div>
-  <div class="hero-content">
-    <div class="hero-tag">⬡ VAULT-TECH CERTIFIED · BIOOS v1.0 · SERIES 2026</div>
-    <h1>
-      Твой личный<br>
-      <em>ИИ-ассистент</em><br>
-      <span class="line2">по биохакингу</span>
-    </h1>
-    <p class="hero-sub">
-      ИИ-ассистент который анализирует твоё питание, сон и данные трекеров — и каждое утро присылает персональный план на день.
-    </p>
-    <div class="hero-actions">
-      <a href="https://t.me/my_biohacking_bot" class="btn-primary">Начать бесплатно →</a>
-      <a href="#features" class="btn-secondary">Что умеет бот</a>
+    <div class="sci-block">
+      <p><strong>Дофамин</strong> отвечает за мотивацию и желание действовать. <strong>Серотонин</strong> — за стабильность настроения и удовлетворённость. <strong>Тестостерон</strong> — за уверенность, энергию и стремление к цели. Когда они не в порядке — никакие аффирмации не помогут.</p>
     </div>
-    <div class="hero-trial">✦ 7 дней бесплатно — карта не нужна</div>
-  </div>
-</section>
 
-<!-- STATS -->
-<div class="stats-bar reveal">
-  <div class="stat">
-    <div class="stat-num">7</div>
-    <div class="stat-label">дней бесплатного триала</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">990₽</div>
-    <div class="stat-label">в месяц — дешевле кофе в неделю</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">24/7</div>
-    <div class="stat-label">всегда на связи в Telegram</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">∞</div>
-    <div class="stat-label">фото еды и PDF анализов</div>
-  </div>
-</div>
+    <p>Не нужен психолог. Нужна <strong>правильная биохимия</strong>. И у неё есть конкретные рычаги управления.</p>
+  </section>
 
-<!-- FEATURES -->
-<section class="section" id="features">
-  <div class="section-label">// возможности</div>
-  <h2>Всё что нужно для <span>осознанного здоровья</span></h2>
-  <div class="features-grid reveal">
-    <div class="feature">
-      <span class="feature-icon">🌅</span>
-      <h3>Утренний брифинг</h3>
-      <p>Каждое утро — персональный план на день с учётом твоего сна, восстановления и целей. Не общие советы, а конкретно под тебя.</p>
-      <span class="feature-tag">→ автоматически</span>
-    </div>
-    <div class="feature">
-      <span class="feature-icon">📸</span>
-      <h3>Дневник питания по фото</h3>
-      <p>Сфотографировал еду — получил КБЖУ, советы по составу и запись в дневник. Никаких ручных вводов и поиска по базам данных.</p>
-      <span class="feature-tag">→ 3 секунды</span>
-    </div>
-    <div class="feature">
-      <span class="feature-icon">🩸</span>
-      <h3>Расшифровка анализов</h3>
-      <p>Загрузи PDF из любой клиники — получи понятный разбор на русском с рекомендациями что делать дальше.</p>
-      <span class="feature-tag">→ любой формат</span>
-    </div>
-    <div class="feature">
-      <span class="feature-icon">💭</span>
-      <h3>Вечерняя рефлексия</h3>
-      <p>Три вопроса каждый вечер — ИИ читает между строк и задаёт один точный вопрос который сдвигает с места.</p>
-      <span class="feature-tag">→ глубже чем кажется</span>
-    </div>
-    <div class="feature">
-      <span class="feature-icon">🎤</span>
-      <h3>Голосовые сообщения</h3>
-      <p>Не хочешь печатать — говори. Бот распознаёт голос и отвечает так же, как на текст. Работает в любой ситуации.</p>
-      <span class="feature-tag">→ Whisper AI</span>
-    </div>
-    <div class="feature">
-      <span class="feature-icon">📊</span>
-      <h3>Интеграции с трекерами</h3>
-      <p>Подключи Whoop или Oura — бот видит твои данные по сну, HRV и восстановлению и учитывает их в каждом ответе.</p>
-      <span class="feature-tag">→ Whoop · Oura</span>
-    </div>
-  </div>
-</section>
+  <div class="divider"></div>
 
-<!-- INTEGRATIONS -->
-<div class="integrations reveal">
-  <div class="integrations-label">// работает вместе с</div>
-  <div class="integrations-list">
-    <div class="integration-item"><span class="integration-dot"></span>Whoop</div>
-    <div class="integration-item"><span class="integration-dot"></span>Oura Ring</div>
-    <div class="integration-item"><span class="integration-dot"></span>Todoist</div>
-    <div class="integration-item"><span class="integration-dot"></span>Claude Sonnet</div>
-    <div class="integration-item"><span class="integration-dot"></span>OpenAI Whisper</div>
-    <div class="integration-item"><span class="integration-dot"></span>Любые PDF-анализы</div>
-  </div>
-</div>
+  <!-- SCIENCE -->
+  <section class="s">
+    <div class="s-label">Наука</div>
+    <h2 class="s-title">Физические практики перестраивают мозг</h2>
+    <p>Это не мотивационная болтовня. Вот что показывают рецензируемые исследования:</p>
 
-<!-- HOW IT WORKS -->
-<section class="section how" id="how">
-  <div class="section-label">// как работает</div>
-  <div class="pip-badge">ИНСТРУКЦИЯ ПО АКТИВАЦИИ</div>
-  <h2 style="margin-top:16px">Четыре шага <span>до первого брифинга</span></h2>
-  <div class="steps reveal">
-    <div class="step">
-      <div class="step-num">01</div>
-      <h3>Запусти бота</h3>
-      <p>Найди @my_biohacking_bot в Telegram и нажми Start. Регистрация — одна кнопка.</p>
+    <div class="sci-block">
+      <p><strong>Силовые тренировки</strong> значимо повышают тестостерон. Кардио — нет. (Frontiers in Endocrinology, мета-анализ 2022)</p>
     </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <h3>Заполни профиль</h3>
-      <p>Расскажи о целях, здоровье и распорядке дня. Это займёт 3 минуты через удобный мини-апп.</p>
+    <div class="sci-block">
+      <p>Физическая нагрузка вызывает <strong>выброс дофамина и серотонина</strong>, улучшая настроение, мотивацию и когнитивные функции. (APA, Frontiers in Psychology)</p>
     </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <h3>Подключи трекер</h3>
-      <p>Необязательно, но мощно. Whoop или Oura дадут боту данные о твоём сне и восстановлении.</p>
+    <div class="sci-block">
+      <p>Высокоинтенсивные тренировки повышают <strong>BDNF — фактор роста мозга</strong>, который отвечает за обучение, память и нейропластичность. (Springer, 2025)</p>
     </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <h3>Получи брифинг</h3>
-      <p>Завтра утром — первый персональный план на день. А дальше бот будет рядом 24/7.</p>
+    <div class="sci-block">
+      <p>Тестостерон стимулирует <strong>дофаминергические пути</strong> — создавая самоподдерживающийся цикл: больше тренируешься → больше хочешь действовать. (Nature, Scientific Reports)</p>
     </div>
-  </div>
-</section>
 
-<!-- CHAT PREVIEW + PRICING -->
-<section class="section" id="pricing">
-  <div class="split">
-    <div>
-      <div class="section-label">// в действии</div>
-      <h2 style="margin-bottom: 32px;">Живой <span>диалог</span></h2>
-      <div class="chat-preview reveal">
-        <div class="chat-header">
-          <div class="chat-avatar">⚡</div>
-          <div>
-            <div class="chat-name">Мой Биохакинг OS</div>
-            <div class="chat-status">● online</div>
-          </div>
-        </div>
-        <div class="chat-messages">
-          <div class="msg bot">
-            Доброе утро. Твой HRV сегодня 68 — выше среднего на 12%. Сон 7ч 20м, восстановление 84%. День хороший для силовой.
-            <div class="msg-time">07:00</div>
-          </div>
-          <div class="msg user">
-            Хочу разобраться с результатами анализа крови
-            <div class="msg-time">09:14</div>
-          </div>
-          <div class="msg bot">
-            Скинь PDF — разберём вместе. Смотрю на всё: ферритин, витамин D, гормоны щитовидки, маркеры воспаления.
-            <div class="msg-time">09:14</div>
-          </div>
-          <div class="msg user">
-            [фото обеда]
-            <div class="msg-time">13:22</div>
-          </div>
-          <div class="msg bot">
-            Гречка с курицей и салатом — примерно 520 ккал, Б38 Ж12 У55. Добавить в дневник?
-            <div class="msg-time">13:22</div>
-          </div>
-        </div>
+    <p style="margin-top:20px">Люди которые регулярно тренируются зарабатывают больше и достигают целей быстрее. Не потому что дисциплинированнее от природы. А потому что <strong>их мозг работает в другом химическом режиме</strong>.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- METHOD -->
+  <section class="s">
+    <div class="s-label">Метод</div>
+    <h2 class="s-title">Три уровня трансформации</h2>
+    <p>Тело — точка входа, не конечная цель. Мы начинаем с физики потому что телом управлять проще. А дальше переносим контроль на всю жизнь.</p>
+
+    <div class="levels">
+      <div class="level">
+        <div class="level-num">01</div>
+        <div class="level-title">Тело — запуск гормонов</div>
+        <div class="level-desc">Силовые тренировки, мясная диета, закаливание. Тестостерон, дофамин, снижение кортизола. Видимый результат за первые недели создаёт инерцию для всего остального.</div>
+      </div>
+      <div class="level">
+        <div class="level-num">02</div>
+        <div class="level-title">Контроль — ИИ-ассистент</div>
+        <div class="level-desc">Персональный бот в Telegram: считает калории по фото, строит программу тренировок, контролирует прогресс каждый день. Не забывает, не жалеет, не даёт соскочить.</div>
+      </div>
+      <div class="level">
+        <div class="level-num">03</div>
+        <div class="level-title">Мышление — цели, деньги, жизнь</div>
+        <div class="level-desc">Еженедельные групповые разборы. Не про бицепс, а про то почему ты саботируешь себя. Как перенести дисциплину из зала в бизнес, отношения, решения. Здоровое тело — здоровый дух, и это нейробиология.</div>
       </div>
     </div>
-    <div>
-      <div class="section-label">// тарифы</div>
-      <h2 style="margin-bottom: 32px;">Просто <span>и без лишнего</span></h2>
-      <div class="pricing-grid reveal">
-        <div class="price-card">
-          <div class="price-name">Месячный</div>
-          <div class="price-amount">990<span>₽</span></div>
-          <div class="price-period">в месяц · отмена в любой момент</div>
-          <ul class="price-features">
-            <li>Все функции без ограничений</li>
-            <li>Неограниченно фото еды</li>
-            <li>PDF анализов</li>
-            <li>Голосовые сообщения</li>
-            <li>Интеграция с трекерами</li>
-          </ul>
-          <a href="https://t.me/my_biohacking_bot" class="btn-price">Начать →</a>
-          <div class="price-trial">7 дней бесплатно</div>
-        </div>
-        <div class="price-card featured">
-          <div class="price-name">Годовой</div>
-          <div class="price-amount">666<span>₽/мес</span></div>
-          <div class="price-period">7 990₽ в год · экономия 33%</div>
-          <ul class="price-features">
-            <li>Всё из месячного</li>
-            <li>Приоритетная поддержка</li>
-            <li>Ранний доступ к новым функциям</li>
-            <li>Фиксированная цена навсегда</li>
-            <li>Экономия 1 990₽ в год</li>
-          </ul>
-          <a href="https://t.me/my_biohacking_bot" class="btn-price primary">Выгоднее →</a>
-          <div class="price-trial">7 дней бесплатно</div>
-        </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WHAT YOU GET -->
+  <section class="s">
+    <div class="s-label">Что получаешь</div>
+    <h2 class="s-title">8 недель. Живая группа. Не записанный курс.</h2>
+
+    <div class="features">
+      <div class="feat">
+        <div class="feat-icon">🤖</div>
+        <div class="feat-title">ИИ-ассистент на 8 недель</div>
+        <div class="feat-desc">Персональная программа тренировок, контроль питания по фото, утренние планы, вечерняя рефлексия. Работает 24/7.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🧠</div>
+        <div class="feat-title">Еженедельные разборы</div>
+        <div class="feat-desc">Живые созвоны. Мышление, цели, дисциплина, деньги, отношения. Не лекции — разбор конкретных ситуаций каждого участника.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">👥</div>
+        <div class="feat-title">Закрытая группа</div>
+        <div class="feat-desc">15 человек с одной целью. Социальное давление которое не даёт бросить. Ты идёшь не один.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">💬</div>
+        <div class="feat-title">Прямой доступ</div>
+        <div class="feat-desc">Пиши в любое время. 17 лет опыта, свой зал единоборств, 100 дней в ледяной бочке, 90-дневный челлендж на камеру. Без фильтра.</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CTA -->
-<section class="cta-section">
-  <h2>Попробуй 7 дней<br><span style="color: var(--accent)">бесплатно</span></h2>
-  <p>Карта не нужна. Просто открой бот и нажми Start.</p>
-  <a href="https://t.me/my_biohacking_bot" class="btn-primary">Открыть в Telegram →</a>
-  <div class="cta-note">@my_biohacking_bot · работает прямо сейчас</div>
-</section>
+  <div class="divider"></div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="logo">BIOOS<span>://</span>v1.0</div>
-  <div class="footer-links">
-    <a href="https://t.me/my_biohacking_bot">Telegram бот</a>
-    <a href="https://t.me/biohacking_os">Канал</a>
-    <a href="https://t.me/biohackingos_support">Поддержка</a>
-  </div>
-</footer>
+  <!-- WHO -->
+  <section class="s">
+    <div class="s-label">Кто ведёт</div>
+    <h2 class="s-title">Не тренер. Не коуч из инстаграма.</h2>
+    <p>Человек который <strong>17 лет тренируется</strong>, владеет залом единоборств, прошёл 100 дней в ледяной бочке и прямо сейчас проходит 90-дневную трансформацию на камере. Разработал ИИ-ассистента который контролирует процесс.</p>
+    <p>Бета-группа идёт <strong>параллельно с челленджем</strong>. Не теория из прошлого, а путь в реальном времени.</p>
 
-<script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+    <div class="stats">
+      <div class="stat"><div class="stat-num">17</div><div class="stat-label">лет опыта</div></div>
+      <div class="stat"><div class="stat-num">90</div><div class="stat-label">дней на камеру</div></div>
+      <div class="stat"><div class="stat-num">15</div><div class="stat-label">мест</div></div>
+    </div>
+  </section>
 
-  // Nav scroll effect
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 40) {
-      nav.style.borderBottomColor = 'rgba(30,45,61,0.8)';
-    } else {
-      nav.style.borderBottomColor = 'var(--border)';
-    }
-  });
-</script>
+  <div class="divider"></div>
+
+  <!-- WHY NOW -->
+  <section class="s">
+    <div class="s-label">Почему сейчас</div>
+    <h2 class="s-title">Это первая группа. Бета.</h2>
+    <p>Честно: формат новый, продукт новый. Поэтому условия — лучшие из возможных. Те кто зайдёт сейчас получат <strong>программу, ИИ-ассистента и прямой доступ</strong> за цену, которой больше не будет.</p>
+    <p>Следующий поток — дороже минимум вдвое. Когда наберётся 15 человек — стартуем.</p>
+  </section>
+
+  <!-- CTA BOTTOM -->
+  <section class="cta-sec">
+    <h2 class="s-title">Готов начать трансформацию?</h2>
+    <p>Напиши в Telegram — расскажу подробности, отвечу на вопросы. Лично, не автобот.</p>
+    <div class="spots">
+      <div class="spots-dot"></div>
+      <div class="spots-text">15 мест — бета-группа</div>
+    </div>
+    <a href="https://t.me/amontaaana?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%83%20%D1%82%D1%80%D0%B0%D0%BD%D1%81%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%B8." class="cta-btn" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295l.213-3.053 5.56-5.023c.24-.213-.054-.334-.373-.121L8.32 13.617l-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.94z"/></svg>
+      Узнать условия
+    </a>
+  </section>
+
+  <div class="footer">Montana © 2026</div>
+</div>
 </body>
 </html>
