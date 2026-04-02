@@ -3,40 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Перезагрузка — Тело. Питание. Мышление.</title>
+<title>Montana Protocol — Тело. Гормоны. Мышление.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#08080d;--bg2:#0e0e18;--bg3:#151522;--text:#e8e8f0;--dim:#70708a;--accent:#e94560;--accent2:#ff6b81;--green:#5eda7a;--gold:#f5c842;--border:rgba(255,255,255,.06)}
+:root{--bg:#08080d;--bg2:#0e0e18;--bg3:#151522;--text:#e8e8f0;--dim:#70708a;--accent:#e94560;--accent2:#ff6b81;--green:#5eda7a;--border:rgba(255,255,255,.06)}
 html{scroll-behavior:smooth}
 body{font-family:'Onest',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
 .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;filter:brightness(.7) contrast(1.05)}
 .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,13,.1) 0%,rgba(8,8,13,.6) 60%,var(--bg) 100%)}
 .hero-content{position:relative;z-index:2;max-width:720px;padding:0 24px}
-.hero-tag{font-family:'Unbounded',sans-serif;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-weight:700}
-.hero h1{font-family:'Unbounded',sans-serif;font-size:clamp(32px,6vw,56px);font-weight:900;line-height:1.15;margin-bottom:20px;background:linear-gradient(135deg,#fff 40%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero p{font-size:18px;color:rgba(255,255,255,.65);line-height:1.6;max-width:540px;margin:0 auto 32px}
-.hero-btn{display:inline-block;padding:16px 40px;background:var(--accent);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;font-size:16px;transition:.3s;letter-spacing:.5px}
+.hero-tag{font-family:'Unbounded',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-weight:700}
+.hero h1{font-family:'Unbounded',sans-serif;font-size:clamp(28px,6vw,52px);font-weight:900;line-height:1.15;margin-bottom:20px;background:linear-gradient(135deg,#fff 40%,var(--accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:18px;color:rgba(255,255,255,.65);line-height:1.6;max-width:520px;margin:0 auto 32px}
+.hero-btn{display:inline-block;padding:16px 44px;background:var(--accent);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;font-size:16px;transition:.3s;letter-spacing:.5px}
 .hero-btn:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(233,69,96,.3)}
+.hero-price{margin-top:14px;font-size:14px;color:var(--dim)}
 .scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;color:var(--dim);font-size:13px;display:flex;flex-direction:column;align-items:center;gap:8px;animation:bob 2s ease-in-out infinite}
 .scroll-hint::after{content:'';width:1px;height:32px;background:linear-gradient(var(--dim),transparent)}
 @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
 section{padding:80px 24px}
 .container{max-width:760px;margin:0 auto}
 .stag{font-family:'Unbounded',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;font-weight:700}
 .sh{font-family:'Unbounded',sans-serif;font-size:clamp(24px,4vw,36px);font-weight:700;line-height:1.2;margin-bottom:24px}
 .sp{font-size:16px;color:var(--dim);line-height:1.7}
+
 .problem{background:var(--bg2)}
 .problem-text{font-size:17px;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:16px}
 .problem-text strong{color:var(--accent);font-weight:600}
 .hl{border-left:3px solid var(--accent);padding-left:16px;margin:24px 0;font-size:17px;color:rgba(255,255,255,.8);font-style:italic;line-height:1.6}
+
 .steps{display:flex;flex-direction:column;gap:20px;margin-top:32px}
 .step{display:flex;gap:16px;align-items:flex-start;background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:20px}
 .step-num{font-family:'Unbounded',sans-serif;font-size:28px;font-weight:900;color:var(--accent);line-height:1;flex-shrink:0;width:36px}
 .step-body h3{font-family:'Unbounded',sans-serif;font-size:15px;font-weight:700;margin-bottom:6px}
 .step-body p{font-size:14px;color:var(--dim);line-height:1.6}
+
 .results{background:var(--bg2)}
 .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
 .res-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:20px}
@@ -44,47 +50,27 @@ section{padding:80px 24px}
 .res-card h3{font-size:15px;font-weight:600;margin-bottom:4px}
 .res-card p{font-size:13px;color:var(--dim);line-height:1.5}
 @media(max-width:500px){.results-grid{grid-template-columns:1fr}}
+
+.what-inside{background:var(--bg2)}
+.inside-grid{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.inside-item{display:flex;gap:14px;align-items:flex-start;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px 20px}
+.inside-item .ii-icon{font-size:20px;flex-shrink:0;width:28px;text-align:center}
+.inside-item .ii-body h3{font-size:14px;font-weight:600;margin-bottom:3px}
+.inside-item .ii-body p{font-size:13px;color:var(--dim);line-height:1.5}
+
 .sci-cards{display:flex;flex-direction:column;gap:12px;margin-top:24px}
 .sci{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px 20px;font-size:14px;color:rgba(255,255,255,.65);line-height:1.6}
 .sci strong{color:var(--green);font-weight:600}
-.formats{background:var(--bg2)}
-.format-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
-@media(max-width:600px){.format-cards{grid-template-columns:1fr}}
-.fmt{border:1px solid var(--border);border-radius:16px;padding:28px 24px;position:relative;overflow:hidden;display:flex;flex-direction:column}
-.fmt.primary{background:linear-gradient(135deg,rgba(233,69,96,.08),rgba(233,69,96,.02));border-color:rgba(233,69,96,.25)}
-.fmt.secondary{background:var(--bg3)}
-.fmt-tag{font-family:'Unbounded',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:700}
-.fmt.primary .fmt-tag{color:var(--accent)}
-.fmt.secondary .fmt-tag{color:var(--gold)}
-.fmt h3{font-family:'Unbounded',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px}
-.fmt .price{font-size:14px;color:var(--dim);margin-bottom:16px}
-.fmt .price b{color:#fff;font-size:20px;font-weight:700}
-.fmt ul{list-style:none;margin-bottom:20px;flex:1}
-.fmt li{font-size:14px;color:rgba(255,255,255,.7);padding:6px 0;padding-left:20px;position:relative;line-height:1.5}
-.fmt li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%}
-.fmt.primary li::before{background:var(--accent)}
-.fmt.secondary li::before{background:var(--gold)}
-.fmt-btn{display:block;text-align:center;padding:14px;border-radius:8px;text-decoration:none;font-weight:600;font-size:15px;transition:.3s}
-.fmt.primary .fmt-btn{background:var(--accent);color:#fff}
-.fmt.primary .fmt-btn:hover{background:var(--accent2);transform:translateY(-1px)}
-.fmt.secondary .fmt-btn{background:transparent;border:1px solid var(--gold);color:var(--gold)}
-.fmt.secondary .fmt-btn:hover{background:rgba(245,200,66,.1);transform:translateY(-1px)}
-.fmt .seats{text-align:center;font-size:12px;color:var(--dim);margin-top:8px}
-.about-row{display:flex;gap:24px;align-items:flex-start;margin-top:24px}
-.about-nums{display:flex;flex-direction:column;gap:12px;flex-shrink:0}
-.anum{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px 20px;text-align:center;min-width:100px}
-.anum .n{font-family:'Unbounded',sans-serif;font-size:22px;font-weight:900;color:var(--accent)}
-.anum .l{font-size:11px;color:var(--dim);margin-top:2px}
-.about-text{font-size:15px;color:rgba(255,255,255,.65);line-height:1.7}
-@media(max-width:600px){.about-row{flex-direction:column}.about-nums{flex-direction:row}}
+
 .cta{text-align:center;padding:80px 24px;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
 .cta h2{font-family:'Unbounded',sans-serif;font-size:clamp(24px,4vw,36px);font-weight:700;margin-bottom:12px}
-.cta p{color:var(--dim);font-size:16px;margin-bottom:32px}
-.cta-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.cta-primary{padding:16px 36px;background:var(--accent);color:#fff;text-decoration:none;border-radius:8px;font-weight:600;font-size:16px;transition:.3s}
-.cta-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(233,69,96,.3)}
-.cta-secondary{padding:16px 36px;background:transparent;border:1px solid var(--gold);color:var(--gold);text-decoration:none;border-radius:8px;font-weight:600;font-size:15px;transition:.3s}
-.cta-secondary:hover{background:rgba(245,200,66,.08);transform:translateY(-2px)}
+.cta p{color:var(--dim);font-size:16px;margin-bottom:8px}
+.cta-price{font-family:'Unbounded',sans-serif;font-size:28px;font-weight:900;color:#fff;margin-bottom:28px}
+.cta-price span{font-size:15px;font-weight:400;color:var(--dim)}
+.cta-btn{display:inline-block;padding:18px 52px;background:var(--accent);color:#fff;text-decoration:none;border-radius:8px;font-weight:700;font-size:17px;transition:.3s;letter-spacing:.5px}
+.cta-btn:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(233,69,96,.3)}
+.cta-sub{margin-top:14px;font-size:13px;color:var(--dim)}
+
 footer{text-align:center;padding:32px 24px;font-size:12px;color:var(--dim);border-top:1px solid var(--border)}
 footer a{color:var(--accent);text-decoration:none}
 </style>
@@ -94,10 +80,11 @@ footer a{color:var(--accent);text-decoration:none}
 <div class="hero">
   <video autoplay muted loop playsinline><source src="hero-bg.mp4" type="video/mp4"></video>
   <div class="hero-content">
-    <div class="hero-tag">Мини-курс + ИИ-ассистент</div>
-    <h1>Перезагрузка</h1>
+    <div class="hero-tag">Закрытый протокол</div>
+    <h1>Montana Protocol</h1>
     <p>Система, которая меняет гормоны, мозг и жизнь. Без силы воли и мотивационных речей.</p>
-    <a href="#formats" class="hero-btn">Выбрать формат</a>
+    <a href="#inside" class="hero-btn">Подключиться</a>
+    <div class="hero-price">990 ₽/мес — отменяй в любой момент</div>
   </div>
   <div class="scroll-hint">Подробнее</div>
 </div>
@@ -108,7 +95,7 @@ footer a{color:var(--accent);text-decoration:none}
     <h2 class="sh">Ты знаешь что делать. И всё равно не делаешь.</h2>
     <p class="problem-text">Встать раньше, тренироваться, есть нормально, строить своё. Ты всё это знаешь. Но каждый понедельник начинаешь заново и бросаешь к среде.</p>
     <p class="problem-text">Это не слабость. Это <strong>химия мозга</strong>, которую тебе никто не объяснял.</p>
-    <div class="hl">Дофамин, серотонин, тестостерон, кортизол — четыре вещества, которые управляют твоей мотивацией, энергией и способностью действовать. Когда они в норме — ты встаёшь и делаешь. Когда нет — физически не можешь себя заставить.</div>
+    <div class="hl">Дофамин, серотонин, тестостерон, кортизол — четыре вещества, которые управляют мотивацией, энергией и способностью действовать. Когда они в норме — ты встаёшь и делаешь. Когда нет — физически не можешь себя заставить.</div>
     <p class="problem-text">Силовые тренировки повышают тестостерон. Тестостерон стимулирует дофаминовые пути в мозге. Дофамин даёт мотивацию к действию. Это не психология, это нейробиология. И это можно починить.</p>
   </div>
 </section>
@@ -121,7 +108,22 @@ footer a{color:var(--accent);text-decoration:none}
     <div class="steps">
       <div class="step"><div class="step-num">1</div><div class="step-body"><h3>Тело и питание</h3><p>Силовые тренировки 3-4 раза в неделю. Безуглеводное питание. Тестостерон растёт, кортизол падает, дофаминовая система перестраивается с потребления на действие.</p></div></div>
       <div class="step"><div class="step-num">2</div><div class="step-body"><h3>Контроль</h3><p>ИИ-ассистент в Telegram: считает калории по фото, строит тренировки, ведёт дневник, утренний план, вечерняя рефлексия. Контроль 24/7 без тренера.</p></div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-body"><h3>Мышление</h3><p>Когда химия мозга в норме — появляются настоящие вопросы. Цели, деньги, смысл, свобода. Это работа с мышлением в группе.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><h3>Мышление</h3><p>Когда химия мозга в норме — появляются настоящие вопросы. Цели, деньги, смысл, свобода. Разбираем в закрытом канале вместе.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="what-inside" id="inside">
+  <div class="container">
+    <div class="stag">Что внутри</div>
+    <h2 class="sh">Montana Protocol — всё в одном месте</h2>
+    <div class="inside-grid">
+      <div class="inside-item"><div class="ii-icon">🎬</div><div class="ii-body"><h3>Видеоуроки + PDF-памятки</h3><p>Питание, тренировки, восстановление, система контроля. 17 лет опыта без воды.</p></div></div>
+      <div class="inside-item"><div class="ii-icon">🤖</div><div class="ii-body"><h3>ИИ-ассистент 24/7</h3><p>Считает КБЖУ по фото, строит программу тренировок, утренний брифинг, вечерняя рефлексия. Твой персональный контролёр.</p></div></div>
+      <div class="inside-item"><div class="ii-icon">💬</div><div class="ii-body"><h3>Обратная связь от меня лично</h3><p>Задавай вопросы в канале — отвечаю каждый день. Не чат-бот, не менеджер. Я.</p></div></div>
+      <div class="inside-item"><div class="ii-icon">📊</div><div class="ii-body"><h3>Новый контент каждую неделю</h3><p>Разборы исследований, рецепты, тренировки, ответы на вопросы, честные отчёты о собственной трансформации.</p></div></div>
+      <div class="inside-item"><div class="ii-icon">🧠</div><div class="ii-body"><h3>Работа с мышлением</h3><p>Не только тело. Цели, привычки, реализация, деньги. Разбираем в канале и на созвонах.</p></div></div>
+      <div class="inside-item"><div class="ii-icon">👥</div><div class="ii-body"><h3>Сообщество людей с одинаковыми целями</h3><p>Не один. Рядом те кто тоже решил перестать жить на автопилоте.</p></div></div>
     </div>
   </div>
 </section>
@@ -129,11 +131,11 @@ footer a{color:var(--accent);text-decoration:none}
 <section class="results">
   <div class="container">
     <div class="stag">Результат</div>
-    <h2 class="sh">Что изменится за 4 недели</h2>
+    <h2 class="sh">Что изменится за первый месяц</h2>
     <div class="results-grid">
       <div class="res-card"><div class="icon">⚡</div><h3>Минус 3-5 кг жира</h3><p>Безуглеводка + силовые = организм сжигает запасы в 2 раза быстрее.</p></div>
       <div class="res-card"><div class="icon">🍳</div><h3>Питание на автомате</h3><p>ИИ считает КБЖУ по фото. 2 приёма пищи в день, сытость 5-6 часов.</p></div>
-      <div class="res-card"><div class="icon">💪</div><h3>28 дней без пропусков</h3><p>Бот напоминает, контролирует, спрашивает отчёт. Не сольёшь.</p></div>
+      <div class="res-card"><div class="icon">💪</div><h3>28 дней без пропусков</h3><p>Бот напоминает, канал держит, ты не сольёшь.</p></div>
       <div class="res-card"><div class="icon">🧠</div><h3>Гормоны в порядке</h3><p>Тестостерон, дофамин, BDNF. Энергия, ясность, желание действовать.</p></div>
     </div>
   </div>
@@ -142,7 +144,7 @@ footer a{color:var(--accent);text-decoration:none}
 <section>
   <div class="container">
     <div class="stag">Наука</div>
-    <h2 class="sh">Исследования за этим курсом</h2>
+    <h2 class="sh">Исследования за этим протоколом</h2>
     <div class="sci-cards">
       <div class="sci"><strong>Frontiers in Endocrinology, 2022:</strong> мета-анализ — силовые тренировки стабильно повышают тестостерон при регулярных занятиях.</div>
       <div class="sci"><strong>Nature, Scientific Reports:</strong> тестостерон стимулирует дофаминергические пути в мозге. Больше тестостерона — сильнее мотивация.</div>
@@ -152,49 +154,12 @@ footer a{color:var(--accent);text-decoration:none}
   </div>
 </section>
 
-<section class="formats" id="formats">
-  <div class="container">
-    <div class="stag">Форматы</div>
-    <h2 class="sh">Выбери свой путь</h2>
-    <div class="format-cards">
-      <div class="fmt primary">
-        <div class="fmt-tag">Старт</div>
-        <h3>Мини-курс + ИИ-бот</h3>
-        <div class="price"><b>990 ₽</b> / месяц</div>
-        <ul>
-          <li>4 видеоурока: питание, тренировки, восстановление, контроль</li>
-          <li>ИИ-ассистент на месяц: КБЖУ по фото, программа тренировок, дневник</li>
-          <li>Утренний брифинг + вечерняя рефлексия</li>
-          <li>PDF-памятки к каждому уроку</li>
-          <li>17 лет опыта в 4 видео без воды</li>
-        </ul>
-        <a href="https://t.me/my_biohacking_bot" class="fmt-btn">Получить курс</a>
-      </div>
-      <div class="fmt secondary">
-        <div class="fmt-tag">Группа</div>
-        <h3>4 недели с ведением</h3>
-        <div class="price"><b>4 990 ₽</b> разово</div>
-        <ul>
-          <li>Всё из мини-курса</li>
-          <li>Закрытый чат с обратной связью</li>
-          <li>Групповой созвон каждое воскресенье</li>
-          <li>Разбор конкретно твоих ситуаций</li>
-          <li>Работа с мышлением и целями</li>
-        </ul>
-        <a href="https://t.me/amontaaana?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B2%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%83" class="fmt-btn">Узнать условия</a>
-        <div class="seats">До 15 человек</div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <div class="cta">
-  <h2>Начни с тела. Остальное изменится.</h2>
-  <p>Мини-курс «Перезагрузка» + ИИ-ассистент. 990 ₽.</p>
-  <div class="cta-buttons">
-    <a href="https://t.me/my_biohacking_bot" class="cta-primary">Получить курс</a>
-    <a href="https://t.me/amontaaana?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B2%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D1%83" class="cta-secondary">Узнать про группу</a>
-  </div>
+  <h2>Подключись к протоколу</h2>
+  <p>Закрытый канал + ИИ-ассистент + обратная связь</p>
+  <div class="cta-price">990 ₽ <span>/ мес</span></div>
+  <a href="https://t.me/my_biohacking_bot" class="cta-btn">Подключиться</a>
+  <div class="cta-sub">Отменяй в любой момент. Без контрактов.</div>
 </div>
 
 <footer><a href="https://instagram.com/a.montaaana" target="_blank">@a.montaaana</a> — Instagram</footer>
